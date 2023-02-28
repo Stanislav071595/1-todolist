@@ -18,7 +18,7 @@ function App(): JSX.Element {
     ]
     const tasks1: TasksType[] = [
         {id: 1, title: "HTML & CSS", isDone: true},
-        {id: 2, title: "CSS & SCSS", isDone: true},
+        {id: 2, title: "CSS & SCSS", isDone: false},
         {id: 3, title: "ES6&TS", isDone: false}
     ]
     const tasks2: TasksType[] = [
