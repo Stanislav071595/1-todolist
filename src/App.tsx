@@ -11,8 +11,7 @@ export type TasksType = {
 
 
 function App(): JSX.Element {
-    alert("render")
-    const [tasks, setTasks] = useState([
+    const [tasks, setTasks] = useState<Array<TasksType>>([
             {id: 1, title: "HTML & CSS", isDone: true},
             {id: 2, title: "ES6&TS", isDone: true},
             {id: 3, title: "ES6&TS", isDone: false},
@@ -22,8 +21,19 @@ function App(): JSX.Element {
 
     const removeTask = (taskId: number) => {
         setTasks(tasks.filter((task)=> task.id !== taskId))
-        console.log(tasks)
     }
+    const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
+    let tasksForRender: Array<TasksType> = []
+    if(filter === "all") {
+        tasksForRender = tasks
+    }
+    if(filter === "active") {
+        tasksForRender = tasks.filter(t => t.isDone === false)
+    }
+    if(filter === "completed") {
+        tasksForRender = tasks.filter(t => t.isDone === true)
+    }
+
 
 
 
@@ -44,7 +54,7 @@ function App(): JSX.Element {
             <ToDoList
                 removeTask={removeTask}
                 title={"What to learn"}
-                tasks={tasks}
+                tasks={tasksForRender}
             />
 
 
