@@ -5,6 +5,7 @@ import {TasksType} from "./App";
 type ToDoListPropsType = {
     title: string
     tasks: Array<TasksType>
+    removeTask: (taskId: number) => void
 }
 const ToDoList: FC<ToDoListPropsType> = (props) => {
     let isAllTasksNotIsDone = true // все не выполенные
@@ -17,6 +18,16 @@ const ToDoList: FC<ToDoListPropsType> = (props) => {
 
     const todoClasses = isAllTasksNotIsDone ? "todolist-empty" : "todolist"
 
+    const todoListItems: Array<JSX.Element> = props.tasks.map((task) => {
+        return (
+            <li>
+                <input type="checkbox" checked={task.isDone}/>
+                <span>{task.title}</span>
+                <button onClick={()=>{props.removeTask(task.id)}}>x</button>
+            </li>
+        )
+    })
+
     return (
         <div className={todoClasses}>
             <h3>{props.title}</h3>
@@ -25,18 +36,7 @@ const ToDoList: FC<ToDoListPropsType> = (props) => {
                 <button>+</button>
             </div>
             <ul>
-                <li>
-                    <input type="checkbox" checked={props.tasks[0].isDone}/>
-                    <span>{props.tasks[0].title}</span>
-                </li>
-                <li>
-                    <input type="checkbox" checked={props.tasks[1].isDone}/>
-                    <span>{props.tasks[1].title}</span>
-                </li>
-                <li>
-                    <input type="checkbox" checked={props.tasks[2].isDone}/>
-                    <span>{props.tasks[2].title}</span>
-                </li>
+                {todoListItems}
             </ul>
             <div>
                 <button>All</button>
