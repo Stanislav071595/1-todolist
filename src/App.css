@@ -20,3 +20,23 @@
   background-color: palevioletred;
 }
 
+.task {
+  font-weight: bold;
+}
+
+.task-done {
+  font-weight: normal;
+  text-decoration: line-through;
+}
+
+.btn-active {
+  background-color: orangered;
+  color: white;
+  border: 2px solid orangered;
+  border-radius: 3px;
+}
+
+.input-error {
+  outline: none;
+  border: 2px solid hotpink;
+}
